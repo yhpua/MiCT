@@ -6,3 +6,9 @@
 ^markdown$
 ^inst$
 ^cran-comments\.md$
+^\.RData$
+^\.Rhistory$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
