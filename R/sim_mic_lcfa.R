@@ -2,9 +2,7 @@
 #'
 #' `sim_mic_lcfa()` estimates the minimal important change (MIC) for a
 #' single-item measure (SIM) using longitudinal confirmatory factor analysis
-#' with an auxiliary variable.
-#'
-#' The function implements a Model C-type approach (see reference) for SIMs. The SIM is measured
+#' with an auxiliary variable. The SIM is measured
 #' at Time 1 and Time 2, an auxiliary variable is measured at Time 1 and Time 2,
 #' and a transition rating is included as an anchor.
 #'

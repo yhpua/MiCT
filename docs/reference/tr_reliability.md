@@ -118,15 +118,26 @@ An object of class `tr_reliability`.
 
 ## Details
 
-The function follows the CFA approach described by Griffiths et al. J
-Clin Epidemiol. 2022;141:36-45. For longitudinal data, Time 1 items load
-on the first factor, Time 2 items load on the second factor, and the
-anchor loads on both factors. Residuals of corresponding items across
-time-points are allowed to correlate. No constraints are placed on
-loadings or thresholds.
+This function follows the CFA approach for estimating transition-rating
+reliability described by Griffiths et al. (2022). For longitudinal data,
+Time 1 items load on the first factor, Time 2 items load on the second
+factor, and the anchor loads on both factors. Residuals of corresponding
+items across time-points are allowed to correlate. No constraints are
+placed on loadings or thresholds.
 
 For cross-sectional data, a one-factor CFA model is used, with the
 anchor item included as an indicator of the latent factor.
+
+## References
+
+Griffiths P, Terluin B, Trigg A, Schuller W, Bjorner JB. A confirmatory
+factor analysis approach was found to accurately estimate the
+reliability of transition ratings. J Clin Epidemiol. 2022;141:36-45.
+doi:10.1016/j.jclinepi.2021.08.029
+
+## See also
+
+[`tr_reliability_model()`](https://yhpua.github.io/MiCT/reference/tr_reliability_model.md)
 
 ## Examples
 

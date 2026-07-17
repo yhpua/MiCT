@@ -69,7 +69,21 @@ A \code{mim_threshold} object. Additional details can be retrieved with
 \description{
 \code{mim_threshold()} estimates an anchor-based interpretation threshold for
 a multi-item measure (MIM) using a one-factor CFA model with an anchor/transition
-rating item. This technique is based on
+rating item.
+}
+\details{
+This technique is based on Terluin et al (2023) and Terluin et al (2024).
+Briefly, the \code{mim_threshold()} function:
+\enumerate{
+\item fits a one-factor CFA model with the MIM items and an anchor item,
+\item computes \code{theta_star}, the latent factor value where the anchor,
+threshold occurs,
+\item maps \code{theta_star} to each item using CFA-implied category
+probabilities,
+\item multiplies item category probabilities by item values or bin
+midpoints, and
+\item sums the item-level expected values to obtain the MIM threshold.
+}
 }
 \examples{
 \dontrun{
@@ -94,25 +108,4 @@ for multi-item questionnaires using item response theory. Qual Life Res 32, 1819
 
 Terluin, B., Trigg, A., Fromy, P. et al. Estimating anchor-based minimal important
 change using longitudinal confirmatory factor analysis. Qual Life Res 33, 963–973 (2024).
-
-The model formula takes the form:
-
-\preformatted{
-anchor ~ item1 + item2 + item3
-}
-
-If the right-hand side is \code{.} or contains no item variables, all variables
-in \code{mydata} except the anchor are treated as MIM items.
-
-The \code{mim_threshold()} function:
-\enumerate{
-\item fits a one-factor CFA model with the MIM items and an anchor item;
-\item computes \code{theta_star}, the latent factor value where the anchor
-threshold occurs;
-\item maps \code{theta_star} to each item using CFA-implied category
-probabilities;
-\item multiplies item category probabilities by item values or bin
-midpoints;
-\item sums the item-level expected values to obtain the MIM threshold.
-}
 }

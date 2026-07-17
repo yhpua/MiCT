@@ -2,9 +2,14 @@
 
 ## MiCT 2.0.0
 
+### Package history
+
+`MiCT` is the renamed and substantially extended successor to the
+original `MIC` package created by Iris Eekhout. Version 2.0.0 reflects
+the package rename and major methodological updates.
+
 ### Major changes
 
-- Renamed package from `MIC` to `MiCT`.
 - Added
   [`sim_threshold()`](https://yhpua.github.io/MiCT/reference/sim_threshold.md)
   for LCFA-based threshold estimation for single-item measures.

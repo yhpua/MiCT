@@ -99,7 +99,7 @@ mic_lcfa(
 
   Character. Method used to map the latent MIC to the observed PROM
   score metric. Options are `"irt"`, `"cfa"`, and `"both"`. `"irt"` uses
-  [`mirt::expected.test()`](https://philchalmers.github.io/mirt/reference/expected.test.html),
+  [`mirt::expected.test()`](https://rdrr.io/pkg/mirt/man/expected.test.html),
   `"cfa"` uses the closed-form CFA/probit expected-score method, and
   `"both"` returns both mappings.
 
@@ -164,7 +164,7 @@ metric.
 Two expected-score mappings are available through `score_method`:
 
 - `"irt"` uses an IRT-based expected test score method via
-  [`mirt::expected.test()`](https://philchalmers.github.io/mirt/reference/expected.test.html).
+  [`mirt::expected.test()`](https://rdrr.io/pkg/mirt/man/expected.test.html).
   This follows the published implementation of Terluin et al. (2024).
 
 - `"cfa"` uses a closed-form CFA probit expected-score method based on

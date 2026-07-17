@@ -87,13 +87,11 @@ back-transformation.
 \description{
 \code{sim_mic_lcfa()} estimates the minimal important change (MIC) for a
 single-item measure (SIM) using longitudinal confirmatory factor analysis
-with an auxiliary variable.
-}
-\details{
-The function implements a Model C-type approach (see reference) for SIMs. The SIM is measured
+with an auxiliary variable. The SIM is measured
 at Time 1 and Time 2, an auxiliary variable is measured at Time 1 and Time 2,
 and a transition rating is included as an anchor.
-
+}
+\details{
 If the pooled SIM values across Time 1 and Time 2 have 12 or fewer observed
 levels, the original SIM values are used as ordered categories. If the pooled
 SIM values have more than 12 observed levels, the SIM is discretized using

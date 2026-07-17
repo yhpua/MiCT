@@ -4,9 +4,10 @@
 #' rating item using confirmatory factor analysis. The reliability estimate is
 #' the R-squared value of the anchor item from the fitted CFA model.
 #'
-#' The function follows the CFA approach described by Griffiths et al.
-#' J Clin Epidemiol. 2022;141:36-45. For longitudinal data, Time 1 items
-#' load on the first factor, Time 2 items load on the second factor, and
+#' This function follows the CFA approach for estimating transition-rating
+#' reliability described by Griffiths et al. (2022).
+#' For longitudinal data, Time 1 items load on the first factor,
+#' Time 2 items load on the second factor, and
 #' the anchor loads on both factors. Residuals of corresponding items across
 #' time-points are allowed to correlate. No constraints are placed on loadings
 #' or thresholds.
@@ -54,6 +55,14 @@
 #'
 #' @return An object of class `tr_reliability`.
 #'
+#'
+#' @references
+#' Griffiths P, Terluin B, Trigg A, Schuller W, Bjorner JB.
+#' A confirmatory factor analysis approach was found to accurately estimate
+#' the reliability of transition ratings.
+#' J Clin Epidemiol. 2022;141:36-45.
+#' doi:10.1016/j.jclinepi.2021.08.029
+
 #' @examples
 #' \dontrun{
 #' sim <- simdat(N = 300, seed = 123)
@@ -75,6 +84,8 @@
 #'
 #' rel
 #' }
+#'
+#' @seealso [tr_reliability_model()]
 #'
 #' @export
 tr_reliability <- function(
