@@ -7,7 +7,7 @@
 
 - **Berend Terluin**. Author.
 
-- **Yong Hao Pua**. Author, maintainer.
+- **Yong-Hao Pua**. Author, maintainer.
 
 ## Citation
 
@@ -20,7 +20,7 @@ Threshold Estimation*. R package version 2.0.0,
 
     @Manual{,
       title = {MiCT: Minimal Important Change and Threshold Estimation},
-      author = {Iris Eekhout and Berend Terluin and Yong Hao Pua},
+      author = {Iris Eekhout and Berend Terluin and Yong-Hao Pua},
       year = {2026},
       note = {R package version 2.0.0},
       url = {https://github.com/yhpua/MiCT},
