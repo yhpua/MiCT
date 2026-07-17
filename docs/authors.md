@@ -7,7 +7,7 @@
 
 - **Berend Terluin**. Author.
 
-- **Yong Hao Pua**. Author, maintainer.
+- **Yong-Hao Pua**. Author, maintainer.
 
 ## Citation
 
@@ -22,7 +22,7 @@ https://yhpua.github.io/MiCT/](https://github.com/yhpua/MiCT%20https://yhpua.git
 
     @Manual{,
       title = {MiCT: Minimal Important Change and Threshold Estimation},
-      author = {Iris Eekhout and Berend Terluin and Yong Hao Pua},
+      author = {Iris Eekhout and Berend Terluin and Yong-Hao Pua},
       year = {2026},
       note = {R package version 2.0.0https://github.com/yhpua/MiCT https://yhpua.github.io/MiCT/},
       url = {https://github.com/yhpua/MiCT https://yhpua.github.io/MiCT/},

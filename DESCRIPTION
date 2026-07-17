@@ -17,7 +17,7 @@ Authors@R: c(
         email = "berend@terluin.net"
     ),
     person(
-        given = "Yong Hao",
+        given = "Yong-Hao",
         family = "Pua",
         role = c("aut", "cre"),
         email = "gmspuyh@duke-nus.edu.sg"
