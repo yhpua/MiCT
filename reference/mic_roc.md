@@ -15,7 +15,6 @@ mic_roc(
   nboot = 0,
   report_every = 100,
   verbose = FALSE,
-  seed = NULL,
   max_attempts = nboot * 5
 )
 ```
@@ -55,10 +54,6 @@ mic_roc(
 
   Logical. If `TRUE`, progress messages are printed.
 
-- seed:
-
-  Optional integer seed for reproducible bootstrap confidence intervals.
-
 - max_attempts:
 
   Integer. Maximum number of bootstrap attempts. This avoids an infinite
@@ -73,6 +68,10 @@ bootstrap confidence intervals.
 
 Optional bootstrap confidence intervals can be requested by setting
 `nboot >= 100`.
+
+For reproducible bootstrap confidence intervals, call
+[`set.seed()`](https://rdrr.io/r/base/Random.html) before calling
+`mic_roc()`.
 
 ## Examples
 
@@ -96,14 +95,521 @@ mic_roc(
 #> ------------------------
 #> MIC ROC: -0.500 
 
-if (FALSE) { # \dontrun{
+# \donttest{
+set.seed(123)
+
 mic_roc(
   data = example,
   x = "score_t1",
   y = "score_t2",
   tr = "trat",
-  nboot = 500,
-  seed = 123
+  nboot = 500
 )
-} # }
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> Warning: 'transpose=TRUE' is deprecated. Only 'transpose=FALSE' will be allowed in a future version.
+#> ROC-based MIC estimation
+#> ------------------------
+#> MIC ROC: -0.500 
+#> Bootstrap 95% CI: -2.500 to 1.500 
+#> Successful bootstrap estimates: 500 
+# }
 ```

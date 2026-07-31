@@ -1,9 +1,10 @@
 # Simulate Longitudinal PROM Data and a Binary Anchor
 
-`simdat()` simulates Time 1 and Time 2 item responses for a 10-item PROM
-and a binary anchor / transition rating from an item response theory
-context. Each item has four ordered response categories scored 0, 1, 2,
-and 3, so the total PROM score ranges from 0 to 30 at each time point.
+`simdat()` simulates Time 1 and Time 2 item responses for a 10-item
+patient-reported outcome measure (PROM) and a binary anchor / transition
+rating from an item response theory context. Each item has four ordered
+response categories scored 0, 1, 2, and 3, so the total PROM score
+ranges from 0 to 30 at each time point.
 
 ## Usage
 
@@ -16,7 +17,6 @@ simdat(
   mean_tetch = 0.3,
   sd_tetch = 1,
   rel_trt = 0.7,
-  seed = 1234,
   return_latent = TRUE,
   add_change = FALSE
 )
@@ -30,11 +30,11 @@ simdat(
 
 - mn_imic:
 
-  Numeric. Mean individual MIC on the latent theta-change scale. For
-  context, `mn_imic = 0.5` corresponds approximately to a raw-score MIC
-  of about 2.8 points, while `mn_imic = 0.37425` corresponds
-  approximately to a raw-score MIC of about 2.5 points on the 0-30 PROM
-  scale.
+  Numeric. Mean individual minimal important change (MIC) on the latent
+  theta-change scale. For context, `mn_imic = 0.5` corresponds
+  approximately to a raw-score MIC of about 2.8 points, while
+  `mn_imic = 0.37425` corresponds approximately to a raw-score MIC of
+  about 2.5 points on the 0-30 PROM scale.
 
 - sd_imic:
 
@@ -58,12 +58,6 @@ simdat(
   Numeric. Target reliability of perceived change used to generate the
   binary anchor / transition rating.
 
-- seed:
-
-  Optional integer. Random seed used to make the simulated data
-  reproducible. If `NULL`, the current random-number generator state is
-  used.
-
 - return_latent:
 
   Logical. If `TRUE`, returns latent variables and item parameters in
@@ -77,10 +71,6 @@ simdat(
 ## Value
 
 A list containing:
-
-- seed:
-
-  The random seed used.
 
 - settings:
 
@@ -109,13 +99,18 @@ The returned data frame includes item-level responses, the binary anchor
 PROM score `score_t2`. If `add_change = TRUE`, the observed change score
 `change = score_t2 - score_t1` is also added.
 
+For reproducible simulations, call
+[`set.seed()`](https://rdrr.io/r/base/Random.html) before calling
+`simdat()`.
+
 The R code is adapted from supplementary materials of Terluin et al.
 Qual Life Res. 2024;33:963-973.
 
 ## Examples
 
 ``` r
-sim <- simdat(N = 200, seed = 123, add_change = TRUE)
+set.seed(123)
+sim <- simdat(N = 200, add_change = TRUE)
 
 names(sim$datw)
 #>  [1] "item1"    "item2"    "item3"    "item4"    "item5"    "item6"   
