@@ -98,8 +98,8 @@ For cross-sectional data, a one-factor CFA model is used, with the anchor
 item included as an indicator of the latent factor.
 }
 \examples{
-\dontrun{
-sim <- simdat(N = 300, seed = 123)
+set.seed(123)
+sim <- simdat(N = 300)
 dat <- sim$datw
 
 rel <- tr_reliability(
@@ -117,7 +117,6 @@ rel <- tr_reliability(
 )
 
 rel
-}
 
 }
 \references{

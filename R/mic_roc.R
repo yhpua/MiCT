@@ -7,6 +7,9 @@
 #' Optional bootstrap confidence intervals can be requested by setting
 #' `nboot >= 100`.
 #'
+#' For reproducible bootstrap confidence intervals, call `set.seed()` before
+#' calling `mic_roc()`.
+#'
 #' @param data Optional data frame containing the Time 1 score, Time 2 score,
 #'   and binary anchor.
 #' @param x Numeric vector of scores at Time 1, or character name of the Time 1
@@ -20,8 +23,6 @@
 #' @param report_every Integer. The interval at which bootstrap progress should
 #'   be printed.
 #' @param verbose Logical. If `TRUE`, progress messages are printed.
-#' @param seed Optional integer seed for reproducible bootstrap confidence
-#'   intervals.
 #' @param max_attempts Integer. Maximum number of bootstrap attempts. This avoids
 #'   an infinite loop when many bootstrap samples fail.
 #'
@@ -46,14 +47,15 @@
 #'   nboot = 0
 #' )
 #'
-#' \dontrun{
+#' \donttest{
+#' set.seed(123)
+#'
 #' mic_roc(
 #'   data = example,
 #'   x = "score_t1",
 #'   y = "score_t2",
 #'   tr = "trat",
-#'   nboot = 500,
-#'   seed = 123
+#'   nboot = 500
 #' )
 #' }
 #'
@@ -66,7 +68,6 @@ mic_roc <- function(
     nboot = 0,
     report_every = 100,
     verbose = FALSE,
-    seed = NULL,
     max_attempts = nboot * 5
 ) {
 
@@ -106,13 +107,6 @@ mic_roc <- function(
       "`max_attempts` must be greater than or equal to `nboot` when bootstrapping.",
       call. = FALSE
     )
-  }
-
-  if (!is.null(seed)) {
-    if (!is.numeric(seed) || length(seed) != 1L || is.na(seed) ||
-        !is.finite(seed) || seed != floor(seed)) {
-      stop("`seed` must be NULL or a single integer.", call. = FALSE)
-    }
   }
 
   # -------------------------------------------------------------------------
@@ -205,8 +199,10 @@ mic_roc <- function(
   }
 
   if (length(unique(tmpdata$tr)) < 2L) {
-    stop("`tr` must contain both 0 and 1 values after removing missing data.",
-         call. = FALSE)
+    stop(
+      "`tr` must contain both 0 and 1 values after removing missing data.",
+      call. = FALSE
+    )
   }
 
   # -------------------------------------------------------------------------
@@ -218,8 +214,10 @@ mic_roc <- function(
     xoc <- d$y - d$x
 
     if (stats::sd(xoc) == 0) {
-      stop("The change score `y - x` must have non-zero variance.",
-           call. = FALSE)
+      stop(
+        "The change score `y - x` must have non-zero variance.",
+        call. = FALSE
+      )
     }
 
     rocobj <- pROC::roc(
@@ -261,33 +259,6 @@ mic_roc <- function(
   n_successful_boot <- 0L
 
   if (nboot >= 100L) {
-
-    if (!is.null(seed)) {
-
-      old_seed_exists <- exists(
-        ".Random.seed",
-        envir = .GlobalEnv,
-        inherits = FALSE
-      )
-
-      if (old_seed_exists) {
-        old_seed <- get(
-          ".Random.seed",
-          envir = .GlobalEnv,
-          inherits = FALSE
-        )
-      }
-
-      set.seed(seed)
-
-      on.exit({
-        if (old_seed_exists) {
-          assign(".Random.seed", old_seed, envir = .GlobalEnv)
-        } else if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
-          rm(".Random.seed", envir = .GlobalEnv)
-        }
-      }, add = TRUE)
-    }
 
     boot_values <- numeric(nboot)
     attempts <- 0L
@@ -342,7 +313,6 @@ mic_roc <- function(
     }
 
     if (n_successful_boot < nboot) {
-
       warning(
         "Only ",
         n_successful_boot,
@@ -351,15 +321,11 @@ mic_roc <- function(
         " attempts.",
         call. = FALSE
       )
-
-      boot_values <- boot_values[seq_len(n_successful_boot)]
-
-    } else {
-
-      boot_values <- boot_values[seq_len(n_successful_boot)]
     }
 
     if (n_successful_boot > 0L) {
+
+      boot_values <- boot_values[seq_len(n_successful_boot)]
 
       qu <- unname(
         stats::quantile(
@@ -402,7 +368,6 @@ mic_roc <- function(
 
   out
 }
-
 
 
 

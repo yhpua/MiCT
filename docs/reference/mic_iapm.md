@@ -1,9 +1,10 @@
-# Estimate Predictive Modeling-Based MICs and thresholds
+# Estimate Predictive Modeling-Based MICs and Thresholds
 
 Estimates (i) predictive modeling-based, (ii) adjusted predictive
 modeling-based, and (iii) improved adjusted predictive modeling-based
-MICs, with optional bootstrap confidence intervals. `mic_iapm` can also
-be used to estimate the interpretation threshold of a predictor.
+minimal important change (MIC) estimates, with optional bootstrap
+confidence intervals. `mic_iapm()` can also be used to estimate the
+interpretation threshold of a predictor.
 
 ## Usage
 
@@ -16,7 +17,6 @@ mic_iapm(
   nboot = 0,
   report_every = 100,
   verbose = FALSE,
-  seed = NULL,
   max_attempts = nboot * 5
 )
 ```
@@ -59,10 +59,6 @@ mic_iapm(
 
   Logical. If `TRUE`, progress messages are printed.
 
-- seed:
-
-  Optional integer seed for reproducible bootstrap confidence intervals.
-
 - max_attempts:
 
   Integer; maximum number of bootstrap attempts. This avoids an infinite
@@ -104,7 +100,8 @@ A `mic_iapm` object containing:
 
 - anchor_reliability:
 
-  Anchor reliability used in the iAPM calculation.
+  Anchor reliability used in the improved adjusted predictive modeling
+  calculation.
 
 - nboot:
 
@@ -116,20 +113,16 @@ A `mic_iapm` object containing:
 
 ## Details
 
-Based on methods developed by Terluin et al. (2015), Terluin et al.
-(2017), and Terluin et al. (2022).
-
-If `nboot >= 100`, bootstrap confidence intervals are computed for the
-predictive MIC and adjusted predictive MIC. If `anchor_reliability` is
-supplied, a bootstrap confidence interval is also computed for the
-improved adjusted predictive MIC.
+For reproducible bootstrap confidence intervals, call
+[`set.seed()`](https://rdrr.io/r/base/Random.html) before calling
+`mic_iapm()`.
 
 ## References
 
 Terluin B, Eekhout I, Terwee CB, de Vet HCW. Minimal important change
 (MIC) based on a predictive modeling approach was more precise than MIC
-based on ROC analysis. J Clin Epidemiol. 2015;68(12):1388-1396.
-doi:10.1016/j.jclinepi.2015.03.015
+based on receiver operating characteristic analysis. J Clin Epidemiol.
+2015;68(12):1388-1396. doi:10.1016/j.jclinepi.2015.03.015
 
 Terluin B, Eekhout I, Terwee CB. The anchor-based minimal important
 change, based on receiver operating characteristic analysis or
@@ -148,7 +141,9 @@ Epidemiol. 2022;148:48-53. doi:10.1016/j.jclinepi.2022.04.018
 ## Examples
 
 ``` r
-sim <- simdat(N = 300, seed = 123, add_change = TRUE)
+# \donttest{
+set.seed(123)
+sim <- simdat(N = 200, add_change = TRUE)
 dat <- sim$datw
 
 mic_iapm(
@@ -156,38 +151,45 @@ mic_iapm(
   anchor = "trat",
   mydata = dat,
   anchor_reliability = sim$truth$observed_rel_trt,
-  nboot = 0
+  nboot = 200
 )
 #> $mic_pm
-#> [1] 2.306145
+#> [1] 1.797553
 #> 
 #> $mic_apm
-#> [1] 2.462398
+#> [1] 1.892168
 #> 
 #> $mic_iapm
-#> [1] 2.752017
+#> [1] 1.994625
 #> 
 #> $anchor_reliability
-#> [1] 0.6437079
+#> [1] 0.7617496
 #> 
 #> $mic_pm_ci
-#> NULL
+#>      mic    lower    upper 
+#> 1.797553 1.015572 2.725703 
 #> 
 #> $mic_apm_ci
-#> NULL
+#>      mic    lower    upper 
+#> 1.892168 1.119443 2.799902 
 #> 
 #> $mic_iapm_ci
-#> NULL
+#>      mic    lower    upper 
+#> 1.994625 0.982196 3.114250 
 #> 
 #> $mic_ci
-#> NULL
+#>               mic    lower    upper
+#> mic_pm   1.797553 1.015572 2.725703
+#> mic_apm  1.892168 1.119443 2.799902
+#> mic_iapm 1.994625 0.982196 3.114250
 #> 
 #> $nboot
-#> [1] 0
+#> [1] 200
 #> 
 #> $n_successful_boot
-#> [1] 0
+#> [1] 200
 #> 
 #> attr(,"class")
 #> [1] "mic_iapm"
+# }
 ```

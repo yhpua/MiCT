@@ -60,7 +60,8 @@ data, a two-factor model is generated, with the anchor loading on both
 Time 1 and Time 2 factors.
 }
 \examples{
-sim <- simdat(N = 200, seed = 123)
+set.seed(123)
+sim <- simdat(N = 200)
 dat <- sim$datw
 
 tr_reliability_model(

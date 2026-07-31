@@ -1,23 +1,27 @@
 #' Simulate Longitudinal PROM Data and a Binary Anchor
 #'
-#' `simdat()` simulates Time 1 and Time 2 item responses for a 10-item PROM
-#' and a binary anchor / transition rating from an item response theory context.
-#' Each item has four ordered response categories scored 0, 1, 2, and 3, so
-#' the total PROM score ranges from 0 to 30 at each time point.
+#' `simdat()` simulates Time 1 and Time 2 item responses for a 10-item
+#' patient-reported outcome measure (PROM) and a binary anchor / transition
+#' rating from an item response theory context. Each item has four ordered
+#' response categories scored 0, 1, 2, and 3, so the total PROM score ranges
+#' from 0 to 30 at each time point.
 #'
 #' The returned data frame includes item-level responses, the binary anchor
 #' `trat`, the Time 1 summed PROM score `score_t1`, and the Time 2 summed PROM
 #' score `score_t2`. If `add_change = TRUE`, the observed change score
 #' `change = score_t2 - score_t1` is also added.
 #'
+#' For reproducible simulations, call `set.seed()` before calling `simdat()`.
+#'
 #' The R code is adapted from supplementary materials of Terluin et al.
 #' Qual Life Res. 2024;33:963-973.
 #'
 #' @param N Integer. Sample size for simulation.
-#' @param mn_imic Numeric. Mean individual MIC on the latent theta-change scale.
-#'   For context, `mn_imic = 0.5` corresponds approximately to a raw-score MIC
-#'   of about 2.8 points, while `mn_imic = 0.37425` corresponds approximately
-#'   to a raw-score MIC of about 2.5 points on the 0-30 PROM scale.
+#' @param mn_imic Numeric. Mean individual minimal important change (MIC) on
+#'   the latent theta-change scale. For context, `mn_imic = 0.5` corresponds
+#'   approximately to a raw-score MIC of about 2.8 points, while
+#'   `mn_imic = 0.37425` corresponds approximately to a raw-score MIC of about
+#'   2.5 points on the 0-30 PROM scale.
 #' @param sd_imic Numeric. Standard deviation of individual MICs on the latent
 #'   theta-change scale.
 #' @param cor_t1_change Numeric. Correlation between baseline theta and latent
@@ -26,8 +30,6 @@
 #' @param sd_tetch Numeric. Standard deviation of latent change.
 #' @param rel_trt Numeric. Target reliability of perceived change used to
 #'   generate the binary anchor / transition rating.
-#' @param seed Optional integer. Random seed used to make the simulated data
-#'   reproducible. If `NULL`, the current random-number generator state is used.
 #' @param return_latent Logical. If `TRUE`, returns latent variables and item
 #'   parameters in the output object.
 #' @param add_change Logical. If `TRUE`, adds `change = score_t2 - score_t1`
@@ -35,7 +37,6 @@
 #'
 #' @return A list containing:
 #' \describe{
-#'   \item{seed}{The random seed used.}
 #'   \item{settings}{Simulation settings.}
 #'   \item{item_names}{Names of Time 1 items, Time 2 items, and anchor.}
 #'   \item{truth}{Truth / diagnostic quantities, including `target_rel_trt`
@@ -47,7 +48,8 @@
 #' latent variables, perceived change, and individual MICs.
 #'
 #' @examples
-#' sim <- simdat(N = 200, seed = 123, add_change = TRUE)
+#' set.seed(123)
+#' sim <- simdat(N = 200, add_change = TRUE)
 #'
 #' names(sim$datw)
 #' sim$truth
@@ -61,45 +63,9 @@ simdat <- function(
     mean_tetch = 0.3,
     sd_tetch = 1.0,
     rel_trt = 0.7,
-    seed = 1234,
     return_latent = TRUE,
     add_change = FALSE
 ) {
-
-  # -------------------------------------------------------------------------
-  # Reproducibility
-  # -------------------------------------------------------------------------
-
-  if (!is.null(seed)) {
-
-    if (!is.numeric(seed) ||
-        length(seed) != 1L ||
-        is.na(seed) ||
-        !is.finite(seed) ||
-        seed != floor(seed)) {
-      stop("`seed` must be NULL or a single integer.", call. = FALSE)
-    }
-
-    old_seed_exists <- exists(
-      ".Random.seed",
-      envir = .GlobalEnv,
-      inherits = FALSE
-    )
-
-    if (old_seed_exists) {
-      old_seed <- get(".Random.seed", envir = .GlobalEnv)
-    }
-
-    set.seed(as.integer(seed))
-
-    on.exit({
-      if (old_seed_exists) {
-        assign(".Random.seed", old_seed, envir = .GlobalEnv)
-      } else if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
-        rm(".Random.seed", envir = .GlobalEnv)
-      }
-    }, add = TRUE)
-  }
 
   # -------------------------------------------------------------------------
   # Argument checks
@@ -128,8 +94,10 @@ simdat <- function(
       is.na(sd_imic) ||
       !is.finite(sd_imic) ||
       sd_imic < 0) {
-    stop("`sd_imic` must be a single non-negative finite numeric value.",
-         call. = FALSE)
+    stop(
+      "`sd_imic` must be a single non-negative finite numeric value.",
+      call. = FALSE
+    )
   }
 
   if (!is.numeric(cor_t1_change) ||
@@ -138,8 +106,10 @@ simdat <- function(
       !is.finite(cor_t1_change) ||
       cor_t1_change <= -1 ||
       cor_t1_change >= 1) {
-    stop("`cor_t1_change` must be a single finite value between -1 and 1.",
-         call. = FALSE)
+    stop(
+      "`cor_t1_change` must be a single finite value between -1 and 1.",
+      call. = FALSE
+    )
   }
 
   if (!is.numeric(mean_tetch) ||
@@ -154,8 +124,10 @@ simdat <- function(
       is.na(sd_tetch) ||
       !is.finite(sd_tetch) ||
       sd_tetch <= 0) {
-    stop("`sd_tetch` must be a single positive finite numeric value.",
-         call. = FALSE)
+    stop(
+      "`sd_tetch` must be a single positive finite numeric value.",
+      call. = FALSE
+    )
   }
 
   if (!is.numeric(rel_trt) ||
@@ -337,7 +309,6 @@ simdat <- function(
   )
 
   out <- list(
-    seed = seed,
     settings = list(
       N = N,
       mn_imic = mn_imic,

@@ -1,7 +1,8 @@
-# Estimate a CFA-based interpretation threshold for a continuous single-item measure
+# Estimate a Confirmatory Factor Analysis-based interpretation threshold for a single-item measure
 
 `sim_threshold()` estimates an interpretation threshold for a continuous
-single-item measure using a confirmatory factor analysis (CFA) approach.
+or ordinal single-item measure using a confirmatory factor analysis
+(CFA) approach developed by Terluin et al (2026)
 
 ## Usage
 
@@ -106,13 +107,6 @@ details can be retrieved with
 
 ## Details
 
-The technique is based on:
-
-Terluin, B., Pua, Y.H., Fromy, P. et al. Estimating the minimal
-important change of single-item measures using the adjusted predictive
-modeling method or the longitudinal confirmatory factor analysis method.
-Qual Life Res 35, 39 (2026). DOI: 10.1007/s11136-025-04134-3
-
 The `sim_threshold()` function:
 
 1.  discretizes a continuous SIM into equal-width ordered categories;
@@ -125,11 +119,19 @@ The `sim_threshold()` function:
 4.  maps `theta_star` back to the original SIM scale using CFA-implied
     category probabilities and bin midpoints.
 
+## References
+
+Terluin B, Pua YH, Fromy P, Trigg A, van der Zwaard B, Bjorner JB.
+Estimating the minimal important change of single-item measures using
+the adjusted predictive modeling method or the longitudinal confirmatory
+factor analysis method. Quality of Life Research. 2026.
+doi:10.1007/s11136-025-04134-3
+
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-sim <- simdat(N = 500, seed = 123)
+set.seed(123)
+sim <- simdat(N = 500)
 dat <- sim$datw
 t1_items <- sim$item_names$t1_items
 
@@ -150,6 +152,14 @@ out <- sim_threshold(
 )
 
 out
-} # }
+#> CFA-based SIM threshold
+#> ------------------------
+#> Threshold: 12.3089 
+#> SIM variable: sim8 
+#> Discretized SIM variable: sim8_ord 
+#> Anchor variable: trat 
+#> Anchor CFA variable: trat 
+#> 
+#> Use `sim_threshold_details(x)` to retrieve the lavaan fit, CFA data, probabilities, and bootstrap results.
 
 ```

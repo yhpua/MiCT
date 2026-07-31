@@ -1,7 +1,7 @@
-#' LCFA-Based MIC for a Single-Item Measure
+#' Longitudinal confirmatory factor analysis-based MIC for a Single-Item Measure
 #'
 #' `sim_mic_lcfa()` estimates the minimal important change (MIC) for a
-#' single-item measure (SIM) using longitudinal confirmatory factor analysis
+#' single-item measure (SIM) using longitudinal confirmatory factor analysis (LCFA)
 #' with an auxiliary variable. The SIM is measured
 #' at Time 1 and Time 2, an auxiliary variable is measured at Time 1 and Time 2,
 #' and a transition rating is included as an anchor.
@@ -71,10 +71,11 @@
 #'   ordered indicators in lavaan. Auxiliary variable loadings and thresholds
 #'   are freely estimated over time.
 #' @param B Integer. Number of nonparametric bootstrap samples. Bootstrap
-#'   confidence intervals are computed only when `B >= 100`.
+#'   confidence intervals are computed only when `B >= 100`.For
+#' reproducible simulations or bootstrap confidence intervals, call `set.seed()`
+#' before calling `sim_mic_lcfa()`.
 #' @param report_every Integer. Print bootstrap progress every `report_every`
 #'   attempted bootstrap fits.
-#' @param seed Optional integer seed for reproducibility.
 #' @param add_lmodel Optional lavaan syntax appended to the generated model.
 #' @param print_model Logical. If `TRUE`, prints the generated lavaan model.
 #' @param verbose Logical. If `TRUE`, prints progress messages.
@@ -106,8 +107,8 @@
 #' doi:10.1007/s11136-023-03577-w
 #'
 #' @examples
-#' \dontrun{
-#' sim <- simdat(N = 500, seed = 123, add_change = TRUE)
+#' set.seed(123)
+#' sim <- simdat(N = 500, add_change = TRUE)
 #' dat <- sim$datw
 #'
 #' # Create a toy single-item measure from several items
@@ -132,7 +133,6 @@
 #' out$sim_prepared$used_discretization
 #' out$sim_prepared$backtransform_factor
 #' out$sim_prepared$original_levels
-#' }
 #'
 #' @seealso [var_discretize()], [equalize_levels()], [mic_lcfa()], [simdat()]
 #'
@@ -149,7 +149,6 @@ sim_mic_lcfa <- function(
     aux_ordered = FALSE,
     B = 0L,
     report_every = 50L,
-    seed = NULL,
     add_lmodel = NULL,
     print_model = FALSE,
     verbose = FALSE,
@@ -235,13 +234,6 @@ sim_mic_lcfa <- function(
   }
 
   report_every <- as.integer(report_every)
-
-  if (!is.null(seed)) {
-    if (!is.numeric(seed) || length(seed) != 1L || is.na(seed) ||
-        !is.finite(seed) || seed != floor(seed)) {
-      stop("`seed` must be NULL or a single integer.", call. = FALSE)
-    }
-  }
 
   # -------------------------------------------------------------------------
   # Helper: prepare SIM pair
@@ -654,32 +646,6 @@ sim_mic_lcfa <- function(
     )
   }
 
-  # -------------------------------------------------------------------------
-  # Reproducibility
-  # -------------------------------------------------------------------------
-
-  if (!is.null(seed)) {
-
-    old_seed_exists <- exists(
-      ".Random.seed",
-      envir = .GlobalEnv,
-      inherits = FALSE
-    )
-
-    if (old_seed_exists) {
-      old_seed <- get(".Random.seed", envir = .GlobalEnv)
-    }
-
-    set.seed(as.integer(seed))
-
-    on.exit({
-      if (old_seed_exists) {
-        assign(".Random.seed", old_seed, envir = .GlobalEnv)
-      } else if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
-        rm(".Random.seed", envir = .GlobalEnv)
-      }
-    }, add = TRUE)
-  }
 
   # -------------------------------------------------------------------------
   # Main fit

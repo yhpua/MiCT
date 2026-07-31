@@ -1,10 +1,10 @@
-# LCFA-Based MIC for a Single-Item Measure
+# Longitudinal confirmatory factor analysis-based MIC for a Single-Item Measure
 
 `sim_mic_lcfa()` estimates the minimal important change (MIC) for a
 single-item measure (SIM) using longitudinal confirmatory factor
-analysis with an auxiliary variable. The SIM is measured at Time 1 and
-Time 2, an auxiliary variable is measured at Time 1 and Time 2, and a
-transition rating is included as an anchor.
+analysis (LCFA) with an auxiliary variable. The SIM is measured at Time
+1 and Time 2, an auxiliary variable is measured at Time 1 and Time 2,
+and a transition rating is included as an anchor.
 
 ## Usage
 
@@ -21,7 +21,6 @@ sim_mic_lcfa(
   aux_ordered = FALSE,
   B = 0L,
   report_every = 50L,
-  seed = NULL,
   add_lmodel = NULL,
   print_model = FALSE,
   verbose = FALSE,
@@ -87,16 +86,15 @@ sim_mic_lcfa(
 - B:
 
   Integer. Number of nonparametric bootstrap samples. Bootstrap
-  confidence intervals are computed only when `B >= 100`.
+  confidence intervals are computed only when `B >= 100`.For
+  reproducible simulations or bootstrap confidence intervals, call
+  [`set.seed()`](https://rdrr.io/r/base/Random.html) before calling
+  `sim_mic_lcfa()`.
 
 - report_every:
 
   Integer. Print bootstrap progress every `report_every` attempted
   bootstrap fits.
-
-- seed:
-
-  Optional integer seed for reproducibility.
 
 - add_lmodel:
 
@@ -209,8 +207,8 @@ doi:10.1007/s11136-023-03577-w
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-sim <- simdat(N = 500, seed = 123, add_change = TRUE)
+set.seed(123)
+sim <- simdat(N = 500, add_change = TRUE)
 dat <- sim$datw
 
 # Create a toy single-item measure from several items
@@ -228,12 +226,68 @@ out <- sim_mic_lcfa(
   B = 0,
   print_model = TRUE
 )
+#> 
+#> ================ SIM MIC LCFA MODEL ================
+#> 
+#> # Factors
+#> F1 =~ a_sim*SIM1 + aux1 + f1*trt
+#> F2 =~ a_sim*SIM2 + aux2 + f2*trt
+#> 
+#> # Equal SIM thresholds over time
+#> SIM1 | b1*t1 + b2*t2 + b3*t3 + b4*t4 + b5*t5 + b6*t6 + b7*t7 + b8*t8 + b9*t9
+#> SIM2 | b1*t1 + b2*t2 + b3*t3 + b4*t4 + b5*t5 + b6*t6 + b7*t7 + b8*t8 + b9*t9
+#> 
+#> # Correlated residuals over time
+#> SIM1 ~~ SIM2
+#> aux1 ~~ aux2
+#> 
+#> # Variances/covariances
+#> F1 ~~ 1*F1
+#> F2 ~~ NA*F2 + var_F2*F2
+#> F1 ~~ cov_F1F2*F2
+#> 
+#> # Free residual variance of SIM2 under theta parameterization
+#> SIM2 ~~ NA*SIM2
+#> 
+#> # Means
+#> F1 ~ 0*1
+#> F2 ~ mn_ch*1
+#> 
+#> # Transition-rating threshold
+#> trt | tau_trt*t1
+#> 
+#> # Derived values
+#> mn_change := mn_ch
+#> sd_change := sqrt(1 + var_F2 - 2*cov_F1F2)
+#> MIC.theta := tau_trt / f2
+#> psb := f1 / f2 + 1
+#> 
+#> ====================================================
 
 out
+#> LCFA-based MIC for a single-item measure
+#> ----------------------------------------
+#> MIC theta: 0.369 
+#> MIC SIM, transformed scale: 0.835 
+#> MIC SIM, original scale: 2.004 
+#> Reliability SIM T1: 0.854 
+#> Reliability transition rating: 0.727 
+#> Present-state bias: 0.015 
+#> Mean latent change: 0.282 
+#> SD latent change: 0.991 
+#> Discretization used: TRUE 
+#> Back-transform factor: 2.400 
+#> 
+#> Fit measures
+#> ------------
+#>   cfi.scaled   tli.scaled rmsea.scaled         srmr 
+#>        1.000        1.002        0.000        0.012 
 
 # Inspect how the SIM was prepared
 out$sim_prepared$used_discretization
+#> [1] TRUE
 out$sim_prepared$backtransform_factor
+#> [1] 2.4
 out$sim_prepared$original_levels
-} # }
+#>  [1]  1  2  3  4  5  6  7  8  9 10
 ```

@@ -1,5 +1,6 @@
 test_that("simdat returns expected structure", {
-  sim <- simdat(N = 100, seed = 123, add_change = TRUE)
+  set.seed(123)
+  sim <- simdat(N = 100, add_change = TRUE)
 
   expect_true(is.list(sim))
   expect_true("datw" %in% names(sim))
@@ -11,7 +12,8 @@ test_that("simdat returns expected structure", {
 })
 
 test_that("mic_iapm returns MIC estimates", {
-  sim <- simdat(N = 200, seed = 123, add_change = TRUE)
+  set.seed(123)
+  sim <- simdat(N = 200, add_change = TRUE)
 
   out <- mic_iapm(
     mypred = "change",
@@ -27,7 +29,8 @@ test_that("mic_iapm returns MIC estimates", {
 })
 
 test_that("mic_roc runs without bootstrap", {
-  sim <- simdat(N = 200, seed = 123)
+  set.seed(123)
+  sim <- simdat(N = 200)
 
   out <- mic_roc(
     data = sim$datw,

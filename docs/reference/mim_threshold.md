@@ -135,8 +135,8 @@ Life Res 33, 963–973 (2024).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-sim <- simdat(N = 500, seed = 123)
+set.seed(123)
+sim <- simdat(N = 500)
 dat <- sim$datw
 t1_items <- sim$item_names$t1_items
 
@@ -147,7 +147,18 @@ out <- mim_threshold(
   var_formula = trat ~ .,
   B = 0
 )
+#> MIM items: item1, item2, item3, item4, item5, item6, item7, item8, item9, item10
+#> Generated lavaan model:
+#> F1 =~ item1_ord + item2_ord + item3_ord + item4_ord + item5_ord + item6_ord + item7_ord + item8_ord + item9_ord + item10_ord + lambda_anchor*trat
+#> trat | tau_anchor*t1
 
 out
-} # }
+#> CFA-based MIM threshold
+#> ------------------------
+#> Threshold: 13.7125 
+#> Anchor variable: trat 
+#> Number of items: 10 
+#> Items: item1, item2, item3, item4, item5, item6, item7, item8, item9, item10 
+#> 
+#> Please use `mim_threshold_details(x)` to retrieve the lavaan fit, CFA data, probabilities, and bootstrap results.
 ```

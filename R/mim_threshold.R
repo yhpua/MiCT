@@ -54,8 +54,8 @@
 #'  change using longitudinal confirmatory factor analysis. Qual Life Res 33, 963–973 (2024).
 #'
 #' @examples
-#' \dontrun{
-#' sim <- simdat(N = 500, seed = 123)
+#' set.seed(123)
+#' sim <- simdat(N = 500)
 #' dat <- sim$datw
 #' t1_items <- sim$item_names$t1_items
 #'
@@ -68,7 +68,7 @@
 #' )
 #'
 #' out
-#' }
+#'
 #' @export
 mim_threshold <- function(
     mydata,

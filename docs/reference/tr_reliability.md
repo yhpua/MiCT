@@ -142,8 +142,8 @@ doi:10.1016/j.jclinepi.2021.08.029
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-sim <- simdat(N = 300, seed = 123)
+set.seed(123)
+sim <- simdat(N = 300)
 dat <- sim$datw
 
 rel <- tr_reliability(
@@ -161,5 +161,9 @@ rel <- tr_reliability(
 )
 
 rel
-} # }
+#> Longitudinal anchor / transition-rating reliability
+#> ---------------------------------------------
+#> Anchor variable: trat 
+#> Item type: ordinal 
+#> Reliability R-squared: 0.6998 
 ```

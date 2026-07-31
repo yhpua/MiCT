@@ -34,7 +34,8 @@
 #'   accessed using `$model`.
 #'
 #' @examples
-#' sim <- simdat(N = 200, seed = 123)
+#' set.seed(123)
+#' sim <- simdat(N = 200)
 #' dat <- sim$datw
 #'
 #' tr_reliability_model(

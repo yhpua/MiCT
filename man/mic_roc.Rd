@@ -12,7 +12,6 @@ mic_roc(
   nboot = 0,
   report_every = 100,
   verbose = FALSE,
-  seed = NULL,
   max_attempts = nboot * 5
 )
 }
@@ -37,9 +36,6 @@ be printed.}
 
 \item{verbose}{Logical. If \code{TRUE}, progress messages are printed.}
 
-\item{seed}{Optional integer seed for reproducible bootstrap confidence
-intervals.}
-
 \item{max_attempts}{Integer. Maximum number of bootstrap attempts. This avoids
 an infinite loop when many bootstrap samples fail.}
 }
@@ -55,6 +51,9 @@ threshold that optimizes the Youden criterion.
 \details{
 Optional bootstrap confidence intervals can be requested by setting
 \code{nboot >= 100}.
+
+For reproducible bootstrap confidence intervals, call \code{set.seed()} before
+calling \code{mic_roc()}.
 }
 \examples{
 data(example)
@@ -72,14 +71,15 @@ mic_roc(
   nboot = 0
 )
 
-\dontrun{
+\donttest{
+set.seed(123)
+
 mic_roc(
   data = example,
   x = "score_t1",
   y = "score_t2",
   tr = "trat",
-  nboot = 500,
-  seed = 123
+  nboot = 500
 )
 }
 

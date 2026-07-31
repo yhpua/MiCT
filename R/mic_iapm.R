@@ -1,17 +1,13 @@
-#' Estimate Predictive Modeling-Based MICs and thresholds
+#' Estimate Predictive Modeling-Based MICs and Thresholds
 #'
-#' Estimates (i) predictive modeling-based, (ii) adjusted predictive modeling-based, and
-#' (iii) improved adjusted predictive modeling-based MICs, with optional bootstrap
-#' confidence intervals. `mic_iapm` can also be used to estimate the
-#' interpretation threshold of a predictor.
+#' Estimates (i) predictive modeling-based, (ii) adjusted predictive
+#' modeling-based, and (iii) improved adjusted predictive modeling-based
+#' minimal important change (MIC) estimates, with optional bootstrap confidence
+#' intervals. `mic_iapm()` can also be used to estimate the interpretation
+#' threshold of a predictor.
 #'
-#' Based on methods developed by Terluin et al. (2015), Terluin et al. (2017),
-#' and Terluin et al. (2022).
-#'
-#' If `nboot >= 100`, bootstrap confidence intervals are computed for the
-#' predictive MIC and adjusted predictive MIC. If `anchor_reliability` is
-#' supplied, a bootstrap confidence interval is also computed for the improved
-#' adjusted predictive MIC.
+#' For reproducible bootstrap confidence intervals, call `set.seed()` before
+#' calling `mic_iapm()`.
 #'
 #' @param mypred Character string; name of the column containing the change
 #'   score or predictor score.
@@ -28,8 +24,6 @@
 #' @param report_every Integer. The interval at which bootstrap progress should
 #'   be printed.
 #' @param verbose Logical. If `TRUE`, progress messages are printed.
-#' @param seed Optional integer seed for reproducible bootstrap confidence
-#'   intervals.
 #' @param max_attempts Integer; maximum number of bootstrap attempts. This avoids
 #'   an infinite loop when many bootstrap samples fail.
 #'
@@ -44,7 +38,8 @@
 #'   \item{mic_iapm_ci}{Bootstrap confidence interval for `mic_iapm`, if
 #'   requested and `anchor_reliability` is supplied.}
 #'   \item{mic_ci}{Matrix of available MIC estimates and confidence intervals.}
-#'   \item{anchor_reliability}{Anchor reliability used in the iAPM calculation.}
+#'   \item{anchor_reliability}{Anchor reliability used in the improved adjusted
+#'   predictive modeling calculation.}
 #'   \item{nboot}{Requested number of bootstrap samples.}
 #'   \item{n_successful_boot}{Number of successful bootstrap samples.}
 #' }
@@ -52,8 +47,8 @@
 #' @references
 #' Terluin B, Eekhout I, Terwee CB, de Vet HCW. Minimal important change
 #' (MIC) based on a predictive modeling approach was more precise than MIC
-#' based on ROC analysis. J Clin Epidemiol. 2015;68(12):1388-1396.
-#' doi:10.1016/j.jclinepi.2015.03.015
+#' based on receiver operating characteristic analysis. J Clin Epidemiol.
+#' 2015;68(12):1388-1396. doi:10.1016/j.jclinepi.2015.03.015
 #'
 #' Terluin B, Eekhout I, Terwee CB. The anchor-based minimal important change,
 #' based on receiver operating characteristic analysis or predictive modeling,
@@ -70,7 +65,9 @@
 #' @export
 #'
 #' @examples
-#' sim <- simdat(N = 300, seed = 123, add_change = TRUE)
+#' \donttest{
+#' set.seed(123)
+#' sim <- simdat(N = 200, add_change = TRUE)
 #' dat <- sim$datw
 #'
 #' mic_iapm(
@@ -78,8 +75,9 @@
 #'   anchor = "trat",
 #'   mydata = dat,
 #'   anchor_reliability = sim$truth$observed_rel_trt,
-#'   nboot = 0
+#'   nboot = 200
 #' )
+#' }
 mic_iapm <- function(
     mypred,
     anchor,
@@ -88,7 +86,6 @@ mic_iapm <- function(
     nboot = 0,
     report_every = 100,
     verbose = FALSE,
-    seed = NULL,
     max_attempts = nboot * 5
 ) {
 
@@ -175,13 +172,6 @@ mic_iapm <- function(
       "`max_attempts` must be greater than or equal to `nboot` when bootstrapping.",
       call. = FALSE
     )
-  }
-
-  if (!is.null(seed)) {
-    if (!is.numeric(seed) || length(seed) != 1L || is.na(seed) ||
-        !is.finite(seed) || seed != floor(seed)) {
-      stop("`seed` must be NULL or a single integer.", call. = FALSE)
-    }
   }
 
   # -------------------------------------------------------------------------
@@ -335,7 +325,11 @@ mic_iapm <- function(
     list(
       mic_pm = as.numeric(mic_pm),
       mic_apm = as.numeric(mic_apm),
-      mic_iapm = if (!is.null(mic_iapm_value)) as.numeric(mic_iapm_value) else NULL
+      mic_iapm = if (!is.null(mic_iapm_value)) {
+        as.numeric(mic_iapm_value)
+      } else {
+        NULL
+      }
     )
   }
 
@@ -353,33 +347,6 @@ mic_iapm <- function(
   # -------------------------------------------------------------------------
 
   if (nboot >= 100L) {
-
-    if (!is.null(seed)) {
-
-      old_seed_exists <- exists(
-        ".Random.seed",
-        envir = .GlobalEnv,
-        inherits = FALSE
-      )
-
-      if (old_seed_exists) {
-        old_seed <- get(
-          ".Random.seed",
-          envir = .GlobalEnv,
-          inherits = FALSE
-        )
-      }
-
-      set.seed(seed)
-
-      on.exit({
-        if (old_seed_exists) {
-          assign(".Random.seed", old_seed, envir = .GlobalEnv)
-        } else if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE)) {
-          rm(".Random.seed", envir = .GlobalEnv)
-        }
-      }, add = TRUE)
-    }
 
     boot_pm <- numeric(nboot)
     boot_apm <- numeric(nboot)
@@ -503,15 +470,12 @@ mic_iapm <- function(
       }
 
       if (!is.null(rel_anchor_value)) {
-
         mic_ci <- rbind(
           mic_pm = mic_pm_ci,
           mic_apm = mic_apm_ci,
           mic_iapm = mic_iapm_ci
         )
-
       } else {
-
         mic_ci <- rbind(
           mic_pm = mic_pm_ci,
           mic_apm = mic_apm_ci

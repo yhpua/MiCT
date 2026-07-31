@@ -1,4 +1,4 @@
-# Estimate Present-State Bias and Anchor-Based MIC Using Longitudinal CFA
+# Estimate Present-State Bias and Anchor-Based MIC Using Longitudinal Confirmatory Factor Analysis
 
 `mic_lcfa()` estimates present-state bias and anchor-based minimal
 important change (MIC) using a longitudinal confirmatory factor analysis
@@ -209,9 +209,9 @@ doi:10.1016/j.jclinepi.2021.12.024
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Minimal working example
-sim <- simdat(N = 500, seed = 123, add_change = TRUE)
+# \donttest{
+set.seed(123)
+sim <- simdat(N = 500, add_change = TRUE)
 dat <- sim$datw
 
 mydat <- dat[, c(
@@ -220,7 +220,7 @@ mydat <- dat[, c(
   "trat"
 )]
 
-# Compare IRT and CFA mappings
+
 out_both <- mic_lcfa(
   mydat = mydat,
   trt = "trat",
@@ -233,26 +233,11 @@ out_both <- mic_lcfa(
   score_method = "both",
   B = 0,
   print_model = FALSE,
-  verbose = FALSE)
+  verbose = FALSE
+)
 
 out_both$MIC.ets
-
-# Bootstrap confidence interval using the faster CFA mapping
-out_boot <- mic_lcfa(
-  mydat = mydat,
-  trt = "trat",
-  trt_cut = 1,
-  auto_equalize = TRUE,
-  pair_by = "suffix",
-  t1_suffix = "",
-  t2_suffix = "\\.1",
-  min_resp = 5,
-  score_method = "cfa",
-  B = 200,
-  report_every = 50,
-  print_model = FALSE,
-  verbose = TRUE)
-
-out_boot
-} # }
+#>      irt      cfa 
+#> 2.612124 2.605668 
+# }
 ```

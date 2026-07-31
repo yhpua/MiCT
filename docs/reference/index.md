@@ -11,10 +11,10 @@
 - [`mic_adjust()`](https://yhpua.github.io/MiCT/reference/mic_adjust.md)
   : Predicted Minimal Important Change (MIC)
 - [`mic_iapm()`](https://yhpua.github.io/MiCT/reference/mic_iapm.md) :
-  Estimate Predictive Modeling-Based MICs and thresholds
+  Estimate Predictive Modeling-Based MICs and Thresholds
 - [`mic_lcfa()`](https://yhpua.github.io/MiCT/reference/mic_lcfa.md) :
   Estimate Present-State Bias and Anchor-Based MIC Using Longitudinal
-  CFA
+  Confirmatory Factor Analysis
 - [`mic_pred()`](https://yhpua.github.io/MiCT/reference/mic_pred.md) :
   Predicted Minimal Important Change (MIC)
 - [`mic_roc()`](https://yhpua.github.io/MiCT/reference/mic_roc.md) :
@@ -26,10 +26,11 @@
 - [`simdat()`](https://yhpua.github.io/MiCT/reference/simdat.md) :
   Simulate Longitudinal PROM Data and a Binary Anchor
 - [`sim_mic_lcfa()`](https://yhpua.github.io/MiCT/reference/sim_mic_lcfa.md)
-  : LCFA-Based MIC for a Single-Item Measure
+  : Longitudinal confirmatory factor analysis-based MIC for a
+  Single-Item Measure
 - [`sim_threshold()`](https://yhpua.github.io/MiCT/reference/sim_threshold.md)
-  : Estimate a CFA-based interpretation threshold for a continuous
-  single-item measure
+  : Estimate a Confirmatory Factor Analysis-based interpretation
+  threshold for a single-item measure
 - [`sim_threshold_details()`](https://yhpua.github.io/MiCT/reference/sim_threshold_details.md)
   : Extract details from a SIM threshold object
 - [`tr_reliability()`](https://yhpua.github.io/MiCT/reference/tr_reliability.md)

@@ -86,8 +86,8 @@ midpoints, and
 }
 }
 \examples{
-\dontrun{
-sim <- simdat(N = 500, seed = 123)
+set.seed(123)
+sim <- simdat(N = 500)
 dat <- sim$datw
 t1_items <- sim$item_names$t1_items
 
@@ -100,7 +100,7 @@ out <- mim_threshold(
 )
 
 out
-}
+
 }
 \references{
 Terluin, B., Koopman, J.E., Hoogendam, L. et al. Estimating meaningful thresholds

@@ -24,24 +24,24 @@ Authors@R: c(
     )
     )
 Description: Provides methods for estimating minimal important change (MIC)
-    and interpretation thresholds for patient-reported outcome
-    measures, including multi-item questionnaires and single-item continuous or ordinal measures.
-    Methods include predictive modelling, adjusted predictive modelling, improved adjusted
-    predictive modelling using anchor reliability, confirmatory factor analysis
-    for anchor reliability, longitudinal confirmatory factor analysis for MIC
-    estimation, LCFA-based MIC estimation for single-item measures, and
-    CFA-based threshold estimation for single-item and multi-item measures.
-    Implemented methods include those described by Terluin et al. (2015)
-    <doi:10.1016/j.jclinepi.2015.03.015>, Terluin et al. (2017)
-    <doi:10.1016/j.jclinepi.2016.12.015>, Terluin et al. (2022)
-    <doi:10.1016/j.jclinepi.2022.04.018>, Terluin et al. (2024)
-    <doi:10.1007/s11136-023-03577-w>, Terluin et al. (2024)
-    <doi:10.1007/s11136-024-03763-4>, Terluin et al. (2026)
-    <doi:10.1007/s11136-025-04134-3>, and Terluin et al. (2023)
-    <doi:10.1007/s11136-023-03355-8>.
+    and interpretation thresholds for multi-item questionnaires and single-item continuous or ordinal
+    measures. Methods include predictive modelling, adjusted predictive
+    modelling, improved adjusted predictive modelling using anchor reliability,
+    confirmatory factor analysis for anchor reliability, longitudinal
+    confirmatory factor analysis for MIC estimation, longitudinal confirmatory
+    factor analysis-based MIC estimation for single-item measures, and
+    confirmatory factor analysis-based threshold estimation for single-item and
+    multi-item measures. Implemented methods include those developed by
+    Terluin et al. (2015) <doi:10.1016/j.jclinepi.2015.03.015>,
+    Terluin et al. (2017) <doi:10.1016/j.jclinepi.2016.12.015>,
+    Terluin et al. (2022) <doi:10.1016/j.jclinepi.2022.04.018>,
+    Terluin et al. (2023) <doi:10.1007/s11136-023-03355-8>,
+    Terluin et al. (2024) <doi:10.1007/s11136-023-03577-w>,
+    Terluin et al. (2024) <doi:10.1007/s11136-024-03763-4>, and
+    Terluin et al. (2026) <doi:10.1007/s11136-025-04134-3>.
 Depends:
     R (>= 4.1.0)
-License: file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -54,5 +54,5 @@ Imports:
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/yhpua/MiCT https://yhpua.github.io/MiCT/
+URL: https://github.com/yhpua/MiCT, https://yhpua.github.io/MiCT/
 BugReports: https://github.com/yhpua/MiCT/issues

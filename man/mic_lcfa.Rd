@@ -2,7 +2,7 @@
 % Please edit documentation in R/mic_lcfa.R
 \name{mic_lcfa}
 \alias{mic_lcfa}
-\title{Estimate Present-State Bias and Anchor-Based MIC Using Longitudinal CFA}
+\title{Estimate Present-State Bias and Anchor-Based MIC Using Longitudinal Confirmatory Factor Analysis}
 \usage{
 mic_lcfa(
   mydat,
@@ -138,9 +138,9 @@ marginal category probabilities can be computed without simulating theta
 values or fitting an additional IRT model.
 }
 \examples{
-\dontrun{
-# Minimal working example
-sim <- simdat(N = 500, seed = 123, add_change = TRUE)
+\donttest{
+set.seed(123)
+sim <- simdat(N = 500, add_change = TRUE)
 dat <- sim$datw
 
 mydat <- dat[, c(
@@ -149,7 +149,7 @@ mydat <- dat[, c(
   "trat"
 )]
 
-# Compare IRT and CFA mappings
+
 out_both <- mic_lcfa(
   mydat = mydat,
   trt = "trat",
@@ -162,27 +162,10 @@ out_both <- mic_lcfa(
   score_method = "both",
   B = 0,
   print_model = FALSE,
-  verbose = FALSE)
+  verbose = FALSE
+)
 
 out_both$MIC.ets
-
-# Bootstrap confidence interval using the faster CFA mapping
-out_boot <- mic_lcfa(
-  mydat = mydat,
-  trt = "trat",
-  trt_cut = 1,
-  auto_equalize = TRUE,
-  pair_by = "suffix",
-  t1_suffix = "",
-  t2_suffix = "\\\\.1",
-  min_resp = 5,
-  score_method = "cfa",
-  B = 200,
-  report_every = 50,
-  print_model = FALSE,
-  verbose = TRUE)
-
-out_boot
 }
 
 }

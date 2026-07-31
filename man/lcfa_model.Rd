@@ -115,7 +115,8 @@ b_param := thr.trt/f2
 }
 }
 \examples{
-sim <- simdat(N = 100, seed = 123)
+set.seed(123)
+sim <- simdat(N = 100)
 dat <- sim$datw
 
 mod <- lcfa_model(

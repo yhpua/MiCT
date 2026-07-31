@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_mic_lcfa.R
 \name{sim_mic_lcfa}
 \alias{sim_mic_lcfa}
-\title{LCFA-Based MIC for a Single-Item Measure}
+\title{Longitudinal confirmatory factor analysis-based MIC for a Single-Item Measure}
 \usage{
 sim_mic_lcfa(
   mydata,
@@ -16,7 +16,6 @@ sim_mic_lcfa(
   aux_ordered = FALSE,
   B = 0L,
   report_every = 50L,
-  seed = NULL,
   add_lmodel = NULL,
   print_model = FALSE,
   verbose = FALSE,
@@ -55,12 +54,12 @@ ordered indicators in lavaan. Auxiliary variable loadings and thresholds
 are freely estimated over time.}
 
 \item{B}{Integer. Number of nonparametric bootstrap samples. Bootstrap
-confidence intervals are computed only when \code{B >= 100}.}
+confidence intervals are computed only when \code{B >= 100}.For
+reproducible simulations or bootstrap confidence intervals, call \code{set.seed()}
+before calling \code{sim_mic_lcfa()}.}
 
 \item{report_every}{Integer. Print bootstrap progress every \code{report_every}
 attempted bootstrap fits.}
-
-\item{seed}{Optional integer seed for reproducibility.}
 
 \item{add_lmodel}{Optional lavaan syntax appended to the generated model.}
 
@@ -86,7 +85,7 @@ back-transformation.
 }
 \description{
 \code{sim_mic_lcfa()} estimates the minimal important change (MIC) for a
-single-item measure (SIM) using longitudinal confirmatory factor analysis
+single-item measure (SIM) using longitudinal confirmatory factor analysis (LCFA)
 with an auxiliary variable. The SIM is measured
 at Time 1 and Time 2, an auxiliary variable is measured at Time 1 and Time 2,
 and a transition rating is included as an anchor.
@@ -134,8 +133,8 @@ pooled original SIM range divided by the number of requested discretized
 levels. If no discretization is used, \code{backtransform_factor = 1}.
 }
 \examples{
-\dontrun{
-sim <- simdat(N = 500, seed = 123, add_change = TRUE)
+set.seed(123)
+sim <- simdat(N = 500, add_change = TRUE)
 dat <- sim$datw
 
 # Create a toy single-item measure from several items
@@ -160,7 +159,6 @@ out
 out$sim_prepared$used_discretization
 out$sim_prepared$backtransform_factor
 out$sim_prepared$original_levels
-}
 
 }
 \references{
