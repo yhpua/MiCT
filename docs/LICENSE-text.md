@@ -1,4 +1,4 @@
 # License
 
-    YEAR: 20262
+    YEAR: 2026
     COPYRIGHT HOLDER: Yong-Hao Pua, Iris Eekhout, Berend Terluin
